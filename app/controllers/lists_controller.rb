@@ -9,7 +9,8 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to list_path(@list.id)
     else
-      render :new
+      #@lists = List.all レンダーを使用する場合のインスタンス変数定義
+      render :new #<= index からnewに変更
   end
     # 1.&2. データを受け取り新規登録するためのインスタンス作成
     # list = List.new(list_params)
