@@ -5,10 +5,15 @@ class ListsController < ApplicationController
   end
 
   def create
+      # 1.データを受け取り新規登録するためのインスタンス変数
     @list = List.new(list_params)
+      # 2.データをデータベースに保存するためのsaveメソッド実行
     if @list.save
+      # 3.フラッシュメッセージを定義し、詳細画面へリダイレクト
+      flash[:notice] = "投稿に成功しました(ﾟ∀ﾟ)"
       redirect_to list_path(@list.id)
     else
+      flash.now[:notice] = "投稿に失敗しました( ﾉД`)"
       #@lists = List.all レンダーを使用する場合のインスタンス変数定義
       render :new #<= index からnewに変更
   end
